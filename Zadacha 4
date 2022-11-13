@@ -1,0 +1,32 @@
+//Напишите генератор паролей. Составьте три уровня сложности генерации паролей (вместе с их длиной) и спрашивайте у пользователя, какой уровень сложности ему нужен.
+//Пароли должны генерироваться случайным образом каждый раз, когда пользователь запрашивает новый пароль.
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+void main()
+{
+    setlocale(LC_ALL, "Russian");
+    int dif = 0;
+    int N;
+    int strN;
+    while (dif != 4) {
+        cout << "Добро пожаловать в генератор паролей.\nВыберите сложность пароля: 1 - лёгкий, 2 - средний, 3 - сложный. Если хотите закончить, введите - 4." << endl;
+        cin >> dif;
+        switch (dif) {
+        case 1: N = 6, strN = 35; break;
+        case 2: N = 12, strN = 61; break;
+        case 3: N = 18, strN = 94; break;
+        case 4: N = 0, strN = 0; break;
+        }
+        char str[]{"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./|\\\"':;<=>?@[]^_`{}~"};
+        srand(time(NULL));
+        char* pas = new char[N + 1];
+        for (int i = 0; i < N; i++) {
+            pas[i] = str[rand() % strN];
+        }
+        pas[N] = 0;
+        if (dif == 4) cout << "Программа завершила свою работу.";
+        else cout << "Ваш пароль:" << endl << pas << endl;
+    }
+}
