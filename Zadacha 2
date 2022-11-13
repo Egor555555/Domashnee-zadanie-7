@@ -1,0 +1,14 @@
+//Дана строка(s). Заменить заданный символ(l1) символом (l2).
+#include "pt4.h"
+#include <string>
+using namespace std;
+void Solve()
+{
+    Task("str42");
+    string s,l1,l2;
+    pt >> s >> l1 >> l2;
+    while (s.find(l1) != -1) {
+        s.replace(s.find(l1), 1, l2);
+    }
+    pt << s;
+}
